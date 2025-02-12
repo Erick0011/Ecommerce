@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    /* Container principal */
+    .admin-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Título principal */
+    .admin-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo do formulário */
+    .admin-form input,
+    .admin-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Botão de envio */
+    .admin-form button {
+        width: 100%;
+        background-color: #0275d8;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .admin-form button:hover {
+        background-color: #025aa5;
+    }
+
+    /* Lista de produtos */
+    .admin-products {
+        list-style: none;
+        padding: 0;
+    }
+
+    .admin-products li {
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 8px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="admin-container">
+        <h2 class="admin-title">Administração</h2>
+        
+        <form class="admin-form" method="POST" action="{{ url_for('add_produto') }}" enctype="multipart/form-data">
+            <input type="text" name="nome" placeholder="Nome do produto" required>
+            <input type="number" name="preco" placeholder="Preço" step="0.01" required>
+            <textarea name="descricao" placeholder="Descrição"></textarea>
+            <input type="number" name="quantidade" placeholder="Quantidade em estoque" required>
+            <input type="file" name="imagens" multiple accept="image/*" required>
+            <button type="submit">Adicionar Produto</button>
+        </form>
+
+        <h3>Produtos Cadastrados</h3>
+        <ul class="admin-products">
+            {% for produto in produtos %}
+                <li><strong>{{ produto.nome }}</strong> - AKZ {{ produto.preco }} ({{ produto.quantidade }} em estoque)</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+

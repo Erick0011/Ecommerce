@@ -1,0 +1,50 @@
+.produto-card {
+    width: 250px;
+    /* Largura fixa para manter proporção */
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ajuste da imagem para garantir que ela apareça inteira */
+.produto-imagem {
+    width: 100%;
+    height: 200px;
+    /* Altura fixa para manter o layout */
+    object-fit: contain;
+    /* Mantém a imagem inteira dentro do espaço */
+    background-color: #f8f9fa;
+    /* Fundo claro para evitar cortes feios */
+    padding: 10px;
+}
+
+/* Mantém os produtos na horizontal */
+.d-flex {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    /* Adiciona rolagem horizontal caso necessário */
+    white-space: nowrap;
+}
+
+/* Ajuste nos botões */
+.btn-carrinho,
+.btn-favorito {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-carrinho {
+    background-color: #0275d8;
+}
+
+.btn-favorito {
+    background-color: #d9534f;
+}

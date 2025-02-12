@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="d-flex flex-wrap overflow-auto gap-3">
+        {% for produto in produtos %}
+        <div class="produto-card card">
+            {% if produto.imagens %}
+            <div id="carousel{{ produto.id }}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for imagem in produto.imagens %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img src="{{ url_for('static', filename=imagem.caminho) }}" class="d-block w-100 produto-imagem">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ produto.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ produto.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+            {% endif %}
+            <div class="card-body text-center">
+                <h5 class="produto-nome">{{ produto.nome }}</h5>
+                <p class="produto-preco">AKZ {{ produto.preco }}</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button class="btn btn-carrinho"><i class="fas fa-shopping-cart text-white"></i></button>
+                    <button class="btn btn-favorito"><i class="fas fa-heart text-white"></i></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
