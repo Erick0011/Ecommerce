@@ -22,6 +22,19 @@ def admin():
     return render_template('admin.html', produtos=produtos)
 
 
+@app.route('/delete_produto/<int:produto_id>', methods=['POST'])
+def delete_produto(produto_id):
+    produto = Produto.query.get(produto_id)
+
+
+    db.session.delete(produto)
+    db.session.commit()
+
+
+
+    return redirect(url_for('admin'))
+
+
 @app.route('/admin/add', methods=['POST'])
 def add_produto():
     nome = request.form.get('nome')

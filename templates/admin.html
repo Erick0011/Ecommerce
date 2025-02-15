@@ -62,24 +62,30 @@
 {% endblock %}
 
 {% block content %}
-    <div class="admin-container">
-        <h2 class="admin-title">Administração</h2>
-        
-        <form class="admin-form" method="POST" action="{{ url_for('add_produto') }}" enctype="multipart/form-data">
-            <input type="text" name="nome" placeholder="Nome do produto" required>
-            <input type="number" name="preco" placeholder="Preço" step="0.01" required>
-            <textarea name="descricao" placeholder="Descrição"></textarea>
-            <input type="number" name="quantidade" placeholder="Quantidade em estoque" required>
-            <input type="file" name="imagens" multiple accept="image/*" required>
-            <button type="submit">Adicionar Produto</button>
-        </form>
+<div class="admin-container">
+    <h2 class="admin-title">Administração</h2>
 
-        <h3>Produtos Cadastrados</h3>
-        <ul class="admin-products">
-            {% for produto in produtos %}
-                <li><strong>{{ produto.nome }}</strong> - AKZ {{ produto.preco }} ({{ produto.quantidade }} em estoque)</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <form class="admin-form" method="POST" action="{{ url_for('add_produto') }}" enctype="multipart/form-data">
+        <input type="text" name="nome" placeholder="Nome do produto" required>
+        <input type="number" name="preco" placeholder="Preço" step="0.01" required>
+        <textarea name="descricao" placeholder="Descrição"></textarea>
+        <input type="number" name="quantidade" placeholder="Quantidade em estoque" required>
+        <input type="file" name="imagens" multiple accept="image/*" required>
+        <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <h3>Produtos Cadastrados</h3>
+    <ul class="admin-products">
+        {% for produto in produtos %}
+            <li>
+                <strong>{{ produto.nome }}</strong> - AKZ {{ produto.preco }} ({{ produto.quantidade }} em estoque)
+                <form method="POST" action="{{ url_for('delete_produto', produto_id=produto.id) }}" style="display:inline;">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}
 
