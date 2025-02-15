@@ -7,7 +7,7 @@ class Produto(db.Model):
     preco = db.Column(db.Float, nullable=False)
     descricao = db.Column(db.Text, nullable=True)
     quantidade = db.Column(db.Integer, nullable=False,
-                           default=1)  # Quantidade disponível
+                            default=1)  # Quantidade disponível
     # Relacionamento com imagens
     imagens = db.relationship('ImagemProduto', backref='produto', lazy=True)
 

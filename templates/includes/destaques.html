@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destaques</title>
+    <style>
+        /* Fundo básico */
+        body {
+            background: #f5f5f5;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Card */
+        .produto-destaque-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .produto-destaque-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Imagem */
+        .produto-imagem img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        /* Texto */
+        .produto-nome {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .produto-nome h4 {
+            color: #0275d8;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .produto-nome p {
+            color: #555;
+        }
+
+        .produto-preco {
+            color: #d9534f;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Aba com motivo do destaque */
+        .produto-motivo-destaque {
+            background: #0275d8;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .produto-destaque-card {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="produto-destaque-card">
+        <!-- Exibir apenas uma imagem -->
+        <div class="produto-imagem">
+            {% if destaque1.imagens %}
+                <img src="{{ url_for('static', filename=destaque1.imagens[0].caminho) }}" alt="{{ destaque1.nome }}">
+            {% else %}
+                <p>Imagem não disponível</p>
+            {% endif %}
+        </div>
+
+        <!-- Informações do Produto -->
+        <div class="produto-nome">
+            <h4>{{ destaque1.nome }}</h4>
+            <p>{{ destaque1.descricao }}</p>
+            <p class="produto-preco">AKZ {{ destaque1.preco }}</p>
+        </div>
+
+        <!-- Aba com motivo do destaque -->
+        <div class="produto-motivo-destaque">
+            Produto em destaque devido à alta procura e qualidade excepcional!
+        </div>
+    </div>
+</body>
+</html>

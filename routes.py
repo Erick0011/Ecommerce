@@ -10,7 +10,9 @@ from utils import allowed_file
 @app.route('/')
 def index():
     produtos = Produto.query.all()
-    return render_template('index.html', title="Home", produtos=produtos)
+    # Buscando o produto com id = 1
+    destaque1 = Produto.query.filter_by(id=1).first()
+    return render_template('index.html', title="Home", produtos=produtos, destaque1=destaque1)
 
 
 @app.route('/admin')
